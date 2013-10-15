@@ -1,0 +1,26 @@
+cluster_name: 'Test Cluster'
+
+# Server is accessed on localhost          
+listen_address: 127.0.0.1
+rpc_address: localhost
+
+# You may want to make the port non-standard if it might conflict
+# with an actual Cassandra server running on the same box.
+rpc_port: 9160
+
+# Data stored in the target directory for this project
+data_file_directories:
+    - target/embeddedCassandra/data
+commitlog_directory: target/embeddedCassandra/commitlog
+saved_caches_directory: target/embeddedCassandra/saved_caches
+
+# The embedded node is the only node in the cluster
+seed_provider:
+    - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+      parameters:
+          - seeds: "127.0.0.1"
+          
+commitlog_sync: periodic
+commitlog_sync_period_in_ms: 1000
+
+partitioner: org.apache.cassandra.dht.RandomPartitioner

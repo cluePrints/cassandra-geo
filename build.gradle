@@ -1,0 +1,18 @@
+apply plugin:'java'
+apply plugin:'eclipse'
+ 
+sourceCompatibility = '1.6'
+
+repositories { mavenCentral() }
+
+dependencies {
+	compile 'org.apache.cassandra:cassandra-all:1.2.2'
+	compile 'com.netflix.astyanax:astyanax:1.56.18'
+	compile 'org.apache.cassandra:cassandra-thrift:2.0.0'
+	testCompile 'org.cassandraunit:cassandra-unit:1.2.0.1'         
+	testCompile 'junit:junit:4.11' 	
+}
+
+configurations {
+	compile.exclude module: 'slf4j-log4j12'
+}
